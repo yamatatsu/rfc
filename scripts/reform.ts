@@ -24,6 +24,10 @@ sourceFiles.forEach((sourceFile) => {
     .replace(/\n(\d+\. .*)\n/g, (_, partial) => `\n## ${partial}\n`)
     .replace(/\n(\d+\.\d+\. .*)\n/g, (_, partial) => `\n### ${partial}\n`)
     .replace(/\n(\d+\.\d+\.\d+\. .*)\n/g, (_, partial) => `\n#### ${partial}\n`)
+    .replace(
+      /\n(\d+\.\d+\.\d+\.\d+\. .*)\n/g,
+      (_, partial) => `\n##### ${partial}\n`,
+    )
     .replace(/\n(Appendix \w. .*)\n/g, (_, partial) => `\n## ${partial}\n`)
     .replace(/\n(\w\.\d+\. .*)\n/g, (_, partial) => `\n### ${partial}\n`)
     .replace(/\n(\w\.\d+\.\d+\. .*)\n/g, (_, partial) => `\n#### ${partial}\n`)
