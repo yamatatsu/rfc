@@ -24,11 +24,17 @@ const rewitedMd = sourceMd
   .replace(/\no /g, (_, partial) => "\n- ")
   // スペースを挟んでつなぐ
   .replace(
-    /(\w|\.|,|\]|;)\n(\w|<|")/g,
+    /(\w|\.|,|\]|;)\n(\w|\(|<|")/g,
     (_, part1, part2) => `${part1} ${part2}`,
   )
   // スペースなしでつなぐ
   .replace(/(-|\/)\n(\w)/g, (_, part1, part2) => `${part1}${part2}`)
+  // リンク
+  .replace(/ \[([\d\w\.-]*)\] /g, (_, key) => ` [${key}][] `)
+  .replace(
+    /\n\[([\d\w\.-]*)\] .*\<([\w\d\/\.:-]*)\>\.\n/g,
+    (_, key, url) => `\n[${key}]: ${url}\n`,
+  )
 
 const fencedYaml = `---
 url: https://tools.ietf.org/html/${rfc}
