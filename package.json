@@ -4,6 +4,9 @@
   "main": "index.js",
   "author": "yamatatsu <the.kinnikuman@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "reform": "deno run --unstable --allow-read --allow-write ./scripts/reform.ts"
+  },
   "devDependencies": {
     "prettier": "^2.0.5"
   }

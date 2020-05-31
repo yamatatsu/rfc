@@ -1,9 +1,11 @@
 import { readFileStr, writeFileStr } from "https://deno.land/std/fs/mod.ts"
 import format from "https://deno.land/x/date_fns/format/index.js"
 
+const sourceFile = Deno.args[0]
+if (typeof sourceFile !== "string") throw "引数にtxtファイルを入れてね"
+
 const now = new Date()
-const sourceFile = "./rfc/rfc7521.txt"
-const mdFile = sourceFile.replace(/\.txt$/, ".md")
+const mdFile = sourceFile.replace(/source\//, "")
 const rfc = sourceFile.match(/rfc\d{4}/)
 
 const sourceMd = await readFileStr(sourceFile)
@@ -11,7 +13,7 @@ const sourceMd = await readFileStr(sourceFile)
 const rewitedMd = sourceMd
   // 不要な行の削除(ページのつなぎ部分)
   .replace(
-    /\nCampbell, et al. Standards Track \[Page \d*\]\n\nRFC \d{4} .*\n/g,
+    /\nCampbell, et al. +Standards Track +\[Page \d*\]\n *\nRFC \d{4} +.*\n/g,
     "",
   )
   // header
