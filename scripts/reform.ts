@@ -24,7 +24,7 @@ const rewitedMd = sourceMd
   .replace(/\no /g, (_, partial) => "\n- ")
   // スペースを挟んでつなぐ
   .replace(
-    /(\w|\.|,|\]|;)\n(\w|\(|<|")/g,
+    /(\w|\.|,|\]|;|")\n(\w|\(|\[|<|")/g,
     (_, part1, part2) => `${part1} ${part2}`,
   )
   // スペースなしでつなぐ
